@@ -4,10 +4,10 @@ import math
 N = 9
 
 # A completed test puzzle
-test_solution_string = "318457962572986143946312578639178425157294836284563791425731689761829354893645217"
+test_solution_string = "425971368173628594869543172241795836736182945958436721597864213384217659612359487"
 
 # Same puzzle as solution, but missing entries.
-test_puzzle_string = "310450900072986143906010508639178020150090806004003700005731009701829350000645010"
+test_puzzle_string = "405001068073628500009003070240790030006102005950000021507064213080217050612300007"
 
 
 # Prints array formatted puzzle
@@ -135,19 +135,18 @@ def backtrack_solve(puzz_string):
                         print('guess: '+str(guess))
 
                         if is_legal(test_grid, row, col, guess):
-                            if puzz_grid[row][col] == 0:
-                                test_grid[row][col] = guess
-                                print('placed value of '+str(guess))
-                                backtrack = False
+                            test_grid[row][col] = guess
+                            print('placed value of '+str(guess))
+                            backtrack = False
 
-                                col += 1
-                                print('move forward (A)')
-                                if col >= N:
-                                    col = 0
-                                    row += 1
-                                    if row >= N:
-                                        return test_grid
-                                break
+                            col += 1
+                            print('move forward (A)')
+                            if col >= N:
+                                col = 0
+                                row += 1
+                                if row >= N:
+                                    return test_grid
+                            break
 
                         elif guess >= N:
                             col -= 1
