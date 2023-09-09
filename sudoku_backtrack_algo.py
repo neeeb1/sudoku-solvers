@@ -104,8 +104,6 @@ def backtrack_solve(puzz_string):
     row = 0
     col = 0
 
-    cycle = 0
-
     while not solved:
         backtrack = False
 
@@ -117,11 +115,11 @@ def backtrack_solve(puzz_string):
                 if backtrack:
                     tmp = puzz_grid[row][col]
                     test_grid[row][col] = tmp
-                    print('set value back to puzzgrid value')
+                    print('set value back to puzz_grid value')
 
                 if puzz_grid[row][col] == 0 or backtrack:
                     guess = temp_value+1
-                    print('intial guess: '+str(guess))
+                    print('initial guess: '+str(guess))
 
                     if guess > N:
                         col -= 1
@@ -167,8 +165,8 @@ def backtrack_solve(puzz_string):
                         if row >= N:
                             return test_grid
 
-
     return test_grid
+
 
 print('starting solver')
 test_board = puzzle_string_to_array(test_puzzle_string)
