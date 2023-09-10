@@ -95,7 +95,7 @@ print_board(test_solution)
 # print()
 
 
-def backtrack_solve(puzz_string):
+def backtrack_solve(puzz_string, debug = False):
     puzz_grid = puzzle_string_to_array(puzz_string)
     test_grid = puzzle_string_to_array(puzz_string)
 
@@ -109,36 +109,36 @@ def backtrack_solve(puzz_string):
 
         while row < N:
             while col < N:
-                print('row: ' + str(row) + ', col: ' + str(col) + ', test_grid value: ' + str(test_grid[row][col]))
+                if debug: print('row: ' + str(row) + ', col: ' + str(col) + ', test_grid value: ' + str(test_grid[row][col]))
                 temp_value = test_grid[row][col]
 
                 if backtrack:
                     tmp = puzz_grid[row][col]
                     test_grid[row][col] = tmp
-                    print('set value back to puzz_grid value')
+                    if debug: print('set value back to puzz_grid value')
 
                 if puzz_grid[row][col] == 0 or backtrack:
                     guess = temp_value+1
-                    print('initial guess: '+str(guess))
+                    if debug: print('initial guess: '+str(guess))
 
                     if guess > N:
                         col -= 1
-                        print('move back (A)')
+                        if debug: print('move back (A)')
                         backtrack = True
                         if col < 0:
                             col = N - 1
                             row -= 1
 
                     while guess < N+1:
-                        print('guess: '+str(guess))
+                        if debug: print('guess: '+str(guess))
 
                         if is_legal(test_grid, row, col, guess):
                             test_grid[row][col] = guess
-                            print('placed value of '+str(guess))
+                            if debug: print('placed value of '+str(guess))
                             backtrack = False
 
                             col += 1
-                            print('move forward (A)')
+                            if debug: print('move forward (A)')
                             if col >= N:
                                 col = 0
                                 row += 1
@@ -148,7 +148,7 @@ def backtrack_solve(puzz_string):
 
                         elif guess >= N:
                             col -= 1
-                            print('move back (A)')
+                            if debug: print('move back (A)')
                             backtrack = True
                             if col < 0:
                                 col = N-1
@@ -158,7 +158,7 @@ def backtrack_solve(puzz_string):
 
                 else:
                     col += 1
-                    print('move forward (B)')
+                    if debug: print('move forward (B)')
                     if col >= N:
                         col = 0
                         row += 1
